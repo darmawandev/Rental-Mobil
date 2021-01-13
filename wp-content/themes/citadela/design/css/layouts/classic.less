@@ -1,0 +1,86 @@
+/*
+ * Citadela Theme - Classic layout CSS
+ *
+ */
+
+
+/********************/
+/*** BASIC LAYOUT ***/
+/********************/
+
+.grid-main										{ max-width: @wideContent; }
+.site-content									{ .pageOffset(); .contentbox(); }
+.site-content .page-title						{ .pageOffset(invert); }
+.classic-header-layout .site-header				{ .pageOffset(); }
+.classic-header-layout .site-branding			{ .pageOffset(none); }
+.center-header-layout .site-header				{ .pageOffset(mobile); }
+.center-header-layout .site-branding			{ .pageOffset(desktop); }
+.center-header-layout .site-header .grid-main	{ max-width: none; }
+
+
+
+/**************/
+/*** HEADER ***/
+/**************/
+
+.showHeaderImage(@url) when not ("@{url}" = "")
+{
+	background-image: 		url("@{url}");
+ 	background-repeat: 		@headerImageRepeat;
+ 	background-attachment: 	@headerImageAttachment;
+ 	background-position: 	@headerImagePosition;
+ 	background-size: 		@headerImageSize;
+}
+
+.site-header     			{ .showHeaderImage(@headerImageUrl); }
+
+
+/****************/
+/*** SIDEBARS ***/
+/****************/
+
+.right-sidebar
+{
+	#secondary						{ margin: 5em auto 3em auto; }
+}
+.left-sidebar
+{
+	#secondary						{ margin: 0em auto 4em auto; }
+}
+
+@media all and (min-width: @resTablet)
+{
+	.right-sidebar,
+	.left-sidebar
+	{
+		.site-content				{ max-width: @wideContent; margin-left: auto; margin-right: auto; }
+		#primary					{ width: 65%; }
+		#secondary					{ padding-top: 1em; width: 30%; max-width: 300px; margin: 0; }
+		.content-area .site-main	{ max-width: none; }
+
+		*:not(.wp-block-column) > .alignwide[class*='wp-block-'],
+		*:not(.wp-block-column) > .alignwide[class*='wc-block-'],		
+		*:not(.wp-block-column) > .alignfull[class*='wp-block-'],
+		*:not(.wp-block-column) > .alignfull[class*='wc-block-'],		
+		*:not(.wp-block-column) > .citadela-block-custom-container			{ width: 100% !important; left: 0 !important; margin-left: 0 !important; .pageOffset(none); }
+		*:not(.wp-block-column) > .citadela-block-custom-container			{ padding-left: 20px; padding-right: 20px; }
+
+		.wp-block-columns.alignfull,
+		.wp-block-columns.alignwide												{ .pageOffset(none); }
+
+		.citadela-block-custom-container:not(.has-bg) .ctdl-automatic-directory-google-map,
+		.citadela-block-custom-container:not(.has-bg) .ctdl-directory-google-map   			{ margin-left: -20px; margin-right: -20px; }
+	}
+	.right-sidebar
+	{
+		#primary					{ float: left;}
+		#secondary					{ float: right;}
+	}
+	.left-sidebar
+	{
+		#primary					{ float: right;}
+		#secondary					{ float: left;}
+	}
+}
+
+
